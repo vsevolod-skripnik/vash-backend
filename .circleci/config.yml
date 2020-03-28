@@ -5,6 +5,8 @@ orbs:
 
 jobs:
   build-and-test:
+    environment:
+      BACKEND_IMAGE: ${CIRCLE_SHA1}
     executor: python/default
     steps:
       - checkout
