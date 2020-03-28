@@ -19,7 +19,7 @@ jobs:
           command: docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/production.yml -f database/compose.yml -f webserver/compose.yml up -d
       - run:
           name: Test backend
-          command: docker ps -a
+          command: docker exec -it project_backend_1 pytest --emoji
 
 workflows:
   main:
