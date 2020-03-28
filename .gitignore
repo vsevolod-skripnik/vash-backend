@@ -1,0 +1,4 @@
+.env
+images/backend/code/vash/.env
+.pytest_cache
+.pycache

@@ -1,0 +1,8 @@
+django==3.0.3  # Web framework
+django-environ==0.4.1  # Easily read .env to settings
+djangorestframework==3.11.0  # REST API
+freezegun==0.3.7  # Freeze time in tests
+mixer==6.1.3  # Create model instances in tests
+pytest==5.3.4  # Run tests
+pytest-django==3.8.0  # Django supportt for Pytest
+pytest-emoji==0.2.0  # Output test results with emoji
