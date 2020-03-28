@@ -12,10 +12,11 @@ jobs:
       - setup_remote_docker
       - checkout
       - run:
+        name: Write user id to shell environment
+        command: "export USER_ID=$(id -u)" >> $BASH_ENV
+      - run:
         name: Build images
         command: docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/production.yml -f database/compose.yml -f webserver/compose.yml build
-        environment:
-          USER_ID: $(id -u)
 
 workflows:
   main:
