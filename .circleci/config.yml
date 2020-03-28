@@ -10,6 +10,7 @@ jobs:
       BACKEND_IMAGE: ${CIRCLE_SHA1}
     executor: python/default
     steps:
+      - setup_remote_docker
       - checkout
       - run:
           command: docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/production.yml -f database/compose.yml -f webserver/compose.yml build
