@@ -16,7 +16,10 @@ jobs:
           command: USER_ID=$(id -u) docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/production.yml -f database/compose.yml -f webserver/compose.yml build
       - run:
           name: Run images
-          command: docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/production.yml -f database/compose.yml -f webserver/compose.yml run -d
+          command: docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/production.yml -f database/compose.yml -f webserver/compose.yml up -d
+      - run:
+          name: Test backend
+          command: docker ps -a
 
 workflows:
   main:
