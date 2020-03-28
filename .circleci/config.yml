@@ -12,8 +12,8 @@ jobs:
       - setup_remote_docker
       - checkout
       - run:
-        name: Get user id
-        command: id -u
+          name: Get user id
+          command: id -u
 
 workflows:
   main:
