@@ -6,6 +6,7 @@ orbs:
 jobs:
   build-and-test:
     environment:
+      USER_ID: $(id -u)
       BACKEND_IMAGE: ${CIRCLE_SHA1}
     executor: python/default
     steps:
