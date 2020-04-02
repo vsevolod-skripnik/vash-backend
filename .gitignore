@@ -1,4 +1,7 @@
 .env
 images/backend/code/vash/.env
 .pytest_cache
-.pycache
+__pycache__
+*.pyc
+backend/code/db.sqlite3
+backend/code/.coverage
