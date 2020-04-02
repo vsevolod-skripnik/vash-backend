@@ -6,19 +6,23 @@ orbs:
 jobs:
   build-and-test:
     environment:
-      BACKEND_IMAGE: ${CIRCLE_SHA1}
+      BACKEND_VERSION: ${CIRCLE_SHA1}
+      USER_ID: 3434
     executor: python/default
     steps:
       - setup_remote_docker
       - checkout
       - run:
           name: Build images
-          command: USER_ID=$(id -u) docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/production.yml -f database/compose.yml -f webserver/compose.yml build
+          command: docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/production.yml -f database/compose.yml -f webserver/compose.yml build
       - run:
           name: Run images
           command: docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/production.yml -f database/compose.yml -f webserver/compose.yml up -d
       - run:
-          name: Test backend
+          name: Run backend migrations
+          command: docker exec -it project_backend_1 python manage.py migrate
+      - run:
+          name: Run backend tests
           command: docker exec -it project_backend_1 pytest --emoji
 
 workflows:
