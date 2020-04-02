@@ -23,7 +23,7 @@ jobs:
           command: docker exec -it project_backend_1 python manage.py migrate
       - run:
           name: Run backend tests
-          command: docker exec -it project_backend_1 pytest --emoji
+          command: docker exec -it project_backend_1 pytest --emoji --cov=. --no-cov-on-fail --cov-report=term:skip-covered
 
 workflows:
   main:
