@@ -5,3 +5,5 @@ services:
     image: ${BACKEND_VERSION}
     environment:
       SECRET_KEY: ${BACKEND_SECRET_KEY}
+      SQLITE_URL: ${BACKEND_SQLITE_URL}
+      DEBUG: ${BACKEND_DEBUG}

@@ -8,8 +8,8 @@ jobs:
     environment:
       BACKEND_VERSION: ${CIRCLE_SHA1}
       USER_ID: 3434
-      DEBUG: off
-      SQLITE_URL: sqlite:///db.sqlite3
+      BACKEND_DEBUG: off
+      BACKEND_SQLITE_URL: sqlite:///db.sqlite3
     executor: python/default
     steps:
       - setup_remote_docker
