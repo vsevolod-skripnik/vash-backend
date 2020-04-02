@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 
 class BaseModel(models.Model):
@@ -8,6 +9,16 @@ class BaseModel(models.Model):
     Store methods and stuff common for all models.
     """
 
+    created_at = models.DateTimeField(
+        verbose_name=_('Created at'),
+        auto_now_add=True,
+    )
+
+    updated_at = models.DateTimeField(
+        verbose_name=_('Updated at'),
+        auto_now=True,
+    )
+
     class Meta:
         abstract = True
 
@@ -15,7 +26,7 @@ class BaseModel(models.Model):
         """
         Update self attributes and save.
 
-        Use in tests to reduce code amount.
+        Use in tests to write less code.
         """
         for name in attributes:
             setattr(self, name, attributes[name])
