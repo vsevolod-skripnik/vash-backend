@@ -1,12 +1,28 @@
-How to run in development mode:
+[![Vsevolod Skripnik](https://circleci.com/gh/vsevolod-skripnik/vash-backend.svg?style=shield)](https://circleci.com/gh/vsevolod-skripnik/vash-backend)
 
-1. Write `USER_ID=1000` to `.env`. Used as container user's id to avoid permission problems when mounting volumes. You can get your id by running `id -u`
+# Vash
 
-2. Write `DATABASE_PASSWORD=password1234` to `.env`. Used as root password during database initialization
+## How to run in development mode:
 
-3. Build images: `docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/development.yml -f database/compose.yml -f webserver/compose.yml build`
+Create `.env` with the following content:
 
-4. Run images: `docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/development.yml -f database/compose.yml -f webserver/compose.yml up`
+1. `USER_ID=1000`. Assigned to user inside container to avoid permission problems when mounting volumes. You can get your id by running `id -u`
+
+2. `DATABASE_PASSWORD=password1234`. Used as root password during database initialization
+
+
+Create `backend/code/vash/.env` with the following content:
+
+1. `DEBUG=on`. Used in settings
+
+2. `SECRET_KEY=f$anhq$lj#8n5cd(wlxe^41-0cx9i)zxmuc9zf5o_^!@y_e!^8`. Used in settings
+
+3. `SQLITE_URL=sqlite:///db.sqlite3`. Used in settings
+
+
+Then build images: `docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/development.yml -f database/compose.yml -f webserver/compose.yml build`
+
+And run images: `docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/development.yml -f database/compose.yml -f webserver/compose.yml up`
 
 
 How to run in production mode:
