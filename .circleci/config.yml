@@ -18,16 +18,16 @@ jobs:
           name: Build images
           command: docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/production.yml -f database/compose.yml -f webserver/compose.yml build
       - run:
-          name: Run images
+          name: Up images
           command: docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/production.yml -f database/compose.yml -f webserver/compose.yml up -d
       - run:
           name: Run backend migrations
-          command: docker exec -it project_backend_1 python manage.py migrate
+          command: docker run project_backend python manage.py migrate
       - run:
-          name: Run backend tests
+          name: Run backend tests and coverage report
           command: >
             ci_env=`bash <(curl -s https://codecov.io/env)` &&
-            docker run $ci_env project_backend_1 sh -c "pytest --emoji --cov=. --no-cov-on-fail --cov-report=term:skip-covered && bash <(curl -s https://codecov.io/bash)"
+            docker run $ci_env project_backend sh -c "pytest --emoji --cov=. --no-cov-on-fail --cov-report=term:skip-covered && bash <(curl -s https://codecov.io/bash)"
 
 workflows:
   main:
