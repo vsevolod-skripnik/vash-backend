@@ -21,6 +21,12 @@ jobs:
           name: Up images
           command: docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/production.yml -f database/compose.yml -f webserver/compose.yml up -d
       - run:
+          name: Show containers
+          command: docker ps -a
+      - run:
+          name: Show images
+          command: docker image -a
+      - run:
           name: Run backend migrations
           command: docker run project_backend python manage.py migrate
       - run:
