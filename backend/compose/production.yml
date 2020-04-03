@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   backend:
-    image: ${BACKEND_VERSION}
+    image: backend:${BACKEND_VERSION}
     environment:
       DEBUG: ${BACKEND_DEBUG}
       SECRET_KEY: ${BACKEND_SECRET_KEY}
