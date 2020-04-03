@@ -1,8 +1,9 @@
-[![Vsevolod Skripnik](https://circleci.com/gh/vsevolod-skripnik/vash-backend.svg?style=shield)](https://circleci.com/gh/vsevolod-skripnik/vash-backend)
+[![Build Status](https://circleci.com/gh/vsevolod-skripnik/vash-backend.svg?style=shield)](https://circleci.com/gh/vsevolod-skripnik/vash-backend)
+[![The Humanoid Typhoon](https://img.shields.io/badge/wanted-%24%2460%2C000%2C000%2C000-red)](https://trigun.fandom.com/wiki/Vash_the_Stampede)
 
 # Vash
 
-## How to run in development mode:
+## How to run in development mode
 
 Create `.env` with the following content:
 
@@ -25,7 +26,7 @@ Then build images: `docker-compose --project-directory . -f backend/compose/comm
 And run images: `docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/development.yml -f database/compose.yml -f webserver/compose.yml up`
 
 
-How to run in production mode:
+## How to run in production mode
 
 1. Execute steps 1 and 2 from “How to run in development mode”
 

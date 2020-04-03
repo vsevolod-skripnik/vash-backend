@@ -19,7 +19,9 @@ jobs:
           command: docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/production.yml -f database/compose.yml -f webserver/compose.yml build
       - run:
           name: Run images
-          command: docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/production.yml -f database/compose.yml -f webserver/compose.yml up -d
+          command: >
+            ci_env=`bash <(curl -s https://codecov.io/env)` &&
+            $ci_env docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/production.yml -f database/compose.yml -f webserver/compose.yml up -d
       - run:
           name: Run backend migrations
           command: docker exec -it project_backend_1 python manage.py migrate
