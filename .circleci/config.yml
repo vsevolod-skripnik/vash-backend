@@ -25,7 +25,7 @@ jobs:
           command: docker ps -a
       - run:
           name: Show images
-          command: docker image -a
+          command: docker image ls
       - run:
           name: Run backend migrations
           command: docker run project_backend python manage.py migrate
