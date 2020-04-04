@@ -6,34 +6,40 @@ orbs:
 jobs:
   build-and-test:
     environment:
-      BACKEND_VERSION: ${CIRCLE_SHA1}
-      USER_ID: 3434
+      BACKEND_USER_ID: 3434
       BACKEND_DEBUG: off
-      BACKEND_SQLITE_URL: sqlite:///db.sqlite3
+      DATABASE_HOST: database
+      DATABASE_PORT: 5432
+      DATABASE_DB: vash
+      DATABASE_USER: user
+      BACKEND_VERSION: ${CIRCLE_SHA1}
     executor: python/default
     steps:
       - setup_remote_docker
       - checkout
       - run:
+          name: Show version
+          command: echo ${BACKEND_VERSION}
+      - run:
           name: Build images
           command: docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/production.yml -f database/compose.yml -f webserver/compose.yml build
       - run:
           name: Up images
-          command: docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/production.yml -f database/compose.yml -f webserver/compose.yml up -d
+          command: docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/production.yml -f database/compose.yml -f webserver/compose.yml up --detach
       - run:
           name: Show containers
           command: docker ps -a
       - run:
           name: Show images
           command: docker image ls -a
-      - run:
-          name: Run backend migrations
-          command: docker run project_backend python manage.py migrate
-      - run:
-          name: Run backend tests and coverage report
-          command: >
-            ci_env=`bash <(curl -s https://codecov.io/env)` &&
-            docker run $ci_env project_backend sh -c "pytest --emoji --cov=. --no-cov-on-fail --cov-report=term:skip-covered && bash <(curl -s https://codecov.io/bash)"
+      # - run:
+      #     name: Run backend migrations
+      #     command: docker run project_backend python manage.py migrate
+      # - run:
+      #     name: Run backend tests and coverage report
+      #     command: >
+      #       ci_env=`bash <(curl -s https://codecov.io/env)` &&
+      #       docker run $ci_env project_backend sh -c "pytest --emoji --cov=. --no-cov-on-fail --cov-report=term:skip-covered && bash <(curl -s https://codecov.io/bash)"
 
 workflows:
   main:
