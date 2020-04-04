@@ -24,12 +24,12 @@ jobs:
           command: BACKEND_VERSION=${CIRCLE_SHA1} docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/production.yml -f database/compose.yml -f webserver/compose.yml up --detach
       - run:
           name: Run backend migrations
-          command: BACKEND_IMAGE=backend:${CIRCLE_SHA1} docker run ${BACKEND_IMAGE} python manage.py migrate
+          command: docker run backend:${CIRCLE_SHA1} python manage.py migrate
       - run:
           name: Run backend tests and report coverage
           command: >
             CI_ENV=`bash <(curl -s https://codecov.io/env)` &&
-            docker run ${CI_ENV} ${BACKEND_IMAGE} sh -c "pytest --emoji --cov=. --no-cov-on-fail --cov-report=term:skip-covered && bash <(curl -s https://codecov.io/bash)"
+            docker run ${CI_ENV} backend:${CIRCLE_SHA1} sh -c "pytest --emoji --cov=. --no-cov-on-fail --cov-report=term:skip-covered && bash <(curl -s https://codecov.io/bash)"
 
 workflows:
   main:
