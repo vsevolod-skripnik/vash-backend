@@ -4,3 +4,4 @@ services:
   backend:
     volumes:
       - ./backend/code:/code
+    command: sleep 1d

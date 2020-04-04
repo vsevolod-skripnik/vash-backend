@@ -5,5 +5,12 @@ services:
     build:
       context: ./backend/
       args:
-        - USER_ID
-    command: sleep 1d
+        USER_ID: ${BACKEND_USER_ID}
+    environment:
+      DEBUG: ${BACKEND_DEBUG}
+      SECRET_KEY: ${BACKEND_SECRET_KEY}
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_DB: ${DATABASE_DB}
+      DATABASE_USER: ${DATABASE_USER}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}

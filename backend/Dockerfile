@@ -11,12 +11,19 @@ RUN adduser -u ${USER_ID} -D ${USER_NAME} && \
              ${RESOURCES_FOLDER} && \
     \
     chown -R ${USER_NAME}: ${CODE_FOLDER} \
-                           ${RESOURCES_FOLDER}
+                           ${RESOURCES_FOLDER} && \
+    \
+    # gcc, libpq, musl-dev and postgresql-dev for psycopg2
+    apk add --no-cache gcc \
+                       libpq \
+                       musl-dev \
+                       postgresql-dev
 
 USER ${USER_NAME}
-COPY requirements.txt /tmp
+COPY --chown=user requirements.txt /tmp
 ENV PATH=/home/${USER_NAME}/.local/bin:${PATH}
-RUN pip3 --no-cache-dir install --user -r /tmp/requirements.txt
+RUN pip3 --no-cache-dir install --user -r /tmp/requirements.txt && \
+    rm -rf /tmp/requirements.txt
 
 COPY code ${CODE_FOLDER}
 WORKDIR ${CODE_FOLDER}

@@ -3,7 +3,3 @@ version: '3.4'
 services:
   backend:
     image: backend:${BACKEND_VERSION}
-    environment:
-      DEBUG: ${BACKEND_DEBUG}
-      SECRET_KEY: ${BACKEND_SECRET_KEY}
-      SQLITE_URL: ${BACKEND_SQLITE_URL}

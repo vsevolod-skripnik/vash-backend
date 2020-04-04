@@ -2,7 +2,7 @@ import os
 
 import environ
 
-env = environ.Env(DEBUG=(bool, False))
+env = environ.Env()
 environ.Env.read_env()
 
 DEBUG = env('DEBUG')
@@ -19,7 +19,16 @@ USE_TZ = True
 STATIC_URL = '/static/'
 SITE_ID = 1
 
-DATABASES = {'default': env.db('SQLITE_URL')}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': env('DATABASE_HOST'),
+        'PORT': env('DATABASE_PORT'),
+        'NAME': env('DATABASE_DB'),
+        'USER': env('DATABASE_USER'),
+        'PASSWORD': env('DATABASE_PASSWORD'),
+    }
+}
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -60,10 +69,10 @@ TEMPLATES = [
 ]
 
 AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},  # noqa: E501
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},  # noqa: E501
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},  # noqa: E501
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
 AUTHENTICATION_BACKENDS = [
