@@ -12,20 +12,16 @@ jobs:
       DATABASE_PORT: 5432
       DATABASE_DB: vash
       DATABASE_USER: user
-      BACKEND_VERSION: ${CIRCLE_SHA1}
     executor: python/default
     steps:
       - setup_remote_docker
       - checkout
       - run:
-          name: Show version
-          command: echo ${BACKEND_VERSION}
-      - run:
           name: Build images
-          command: docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/production.yml -f database/compose.yml -f webserver/compose.yml build
+          command: BACKEND_VERSION=${CIRCLE_SHA1} docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/production.yml -f database/compose.yml -f webserver/compose.yml build
       - run:
           name: Up images
-          command: docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/production.yml -f database/compose.yml -f webserver/compose.yml up --detach
+          command: BACKEND_VERSION=${CIRCLE_SHA1} docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/production.yml -f database/compose.yml -f webserver/compose.yml up --detach
       - run:
           name: Show containers
           command: docker ps -a
