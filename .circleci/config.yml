@@ -1,6 +1,7 @@
 version: 2.1
 
 orbs:
+  python: circleci/python@0.2.1
   codecov: codecov/codecov@1.0.2
 
 jobs:
@@ -12,7 +13,7 @@ jobs:
       DATABASE_PORT: 5432
       DATABASE_DB: vash
       DATABASE_USER: user
-    executor: docker
+    executor: python/default
     steps:
       - setup_remote_docker
       - checkout
