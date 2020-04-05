@@ -12,6 +12,7 @@ jobs:
       DATABASE_PORT: 5432
       DATABASE_DB: vash
       DATABASE_USER: user
+    executor: docker
     steps:
       - setup_remote_docker
       - checkout
