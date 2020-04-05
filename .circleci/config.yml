@@ -6,6 +6,7 @@ orbs:
 
 jobs:
   build-and-test:
+    executor: python/default
     environment:
       BACKEND_USER_ID: 3434
       BACKEND_DEBUG: off
@@ -13,7 +14,6 @@ jobs:
       DATABASE_PORT: 5432
       DATABASE_DB: vash
       DATABASE_USER: user
-    executor: python/default
     steps:
       - setup_remote_docker
       - checkout
