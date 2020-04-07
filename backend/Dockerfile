@@ -5,6 +5,7 @@ ARG USER_NAME=user
 ARG CODE_FOLDER=/code
 ARG RESOURCES_FOLDER=/resources
 
+# gcc, libpq, musl-dev and postgresql-dev for psycopg2
 RUN adduser -u ${USER_ID} -D ${USER_NAME} && \
     \
     mkdir -p ${CODE_FOLDER} \
@@ -13,7 +14,6 @@ RUN adduser -u ${USER_ID} -D ${USER_NAME} && \
     chown -R ${USER_NAME}: ${CODE_FOLDER} \
                            ${RESOURCES_FOLDER} && \
     \
-    # gcc, libpq, musl-dev and postgresql-dev for psycopg2
     apk add --no-cache gcc \
                        libpq \
                        musl-dev \
