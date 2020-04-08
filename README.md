@@ -3,13 +3,13 @@
 
 # Vash
 
-Scripts:
+Commands:
 
-1. Test backend: `docker exec -it vash-backend_backend_1 pytest --emoji --cov=. --no-cov-on-fail --cov-report=term:skip-covered`
+- Test backend: `docker exec -it vash-backend_backend_1 pytest --emoji --cov=. --no-cov-on-fail --cov-report=term:skip-covered`
 
-2. Run backend migrations: `docker exec -it vash-backend_backend_1 python manage.py migrate`
+- Run backend migrations: `docker exec -it vash-backend_backend_1 python manage.py migrate`
 
-3. Collect static: `docker exec -it vash-backend_backend_1 python manage.py collectstatic`
+- Collect static: `docker exec -it vash-backend_backend_1 python manage.py collectstatic`
 
 
 ## How to run in development mode
