@@ -28,7 +28,7 @@ jobs:
           command: docker exec -it project_backend_1 pytest --emoji --cov=. --no-cov-on-fail --cov-report=term:skip-covered
       - run:
           name: Copy test coverage from container
-          command: docker cp project_backend_1:/code/.coverage .
+          command: docker cp project_backend_1:/code/.coverage backend/code
       # - codecov/upload:
       #     file: .coverage
       #     conf: backend/codecov.yml
