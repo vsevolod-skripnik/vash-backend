@@ -33,7 +33,7 @@ jobs:
           command: docker cp project_backend_1:/code/.coverage backend
       - run:
           name: Report test coverage
-          command: cd backend && coveralls
+          command: coveralls --rcfile=backend/.coveragerc
 
 workflows:
   main:
