@@ -32,8 +32,11 @@ jobs:
           name: Copy coverage from container
           command: docker cp project_backend_1:/code/.coverage backend/code
       - run:
+          name: Show current folder
+          command: pwd
+      - run:
           name: Report test coverage
-          command: coveralls
+          command: cd backend && coveralls
 
 workflows:
   main:
