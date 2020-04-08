@@ -1,11 +1,11 @@
-[![Build Status](https://circleci.com/gh/vsevolod-skripnik/vash-backend.svg?style=shield)](https://circleci.com/gh/vsevolod-skripnik/vash-backend)
+[![Build Status](https://circleci.com/gh/vsevolod-skripnik/vash-backend.svg?style=flat-shield)](https://circleci.com/gh/vsevolod-skripnik/vash-backend)
 [![The Humanoid Typhoon](https://img.shields.io/badge/wanted-%24%2460%2C000%2C000%2C000-red)](https://trigun.fandom.com/wiki/Vash_the_Stampede)
 
 # Vash
 
 Commands:
 
-- Test backend: `docker exec -it vash-backend_backend_1 pytest --emoji --cov=. --no-cov-on-fail --cov-report=term:skip-covered`
+- Test backend: `docker exec -it vash-backend_backend_1 coverage run --source=. -m pytest --emoji`
 
 - Run backend migrations: `docker exec -it vash-backend_backend_1 python manage.py migrate`
 

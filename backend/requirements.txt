@@ -1,3 +1,4 @@
+coveralls==2.0.0  # Show test coverage
 django==3.0.3  # Web framework
 django-environ==0.4.1  # Easily read .env to settings
 djangorestframework==3.11.0  # REST API
