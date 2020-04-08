@@ -3,3 +3,4 @@ source =
     /home/circleci/project/backend/code
     backend/code
     /code
+    code
