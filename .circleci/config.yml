@@ -30,7 +30,7 @@ jobs:
           command: docker exec -it project_backend_1 coverage run --source=. -m pytest --emoji
       - run:
           name: Copy coverage from container
-          command: docker cp project_backend_1:/code/.coverage backend/code
+          command: docker cp project_backend_1:/code/.coverage backend
       - run:
           name: Report test coverage
           command: cd backend && coveralls
