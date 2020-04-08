@@ -29,9 +29,12 @@ jobs:
       - run:
           name: Copy test coverage from container
           command: docker cp project_backend_1:/code/.coverage .
-      - codecov/upload:
-          file: .coverage
-          conf: backend/codecov.yml
+      # - codecov/upload:
+      #     file: .coverage
+      #     conf: backend/codecov.yml
+      - run:
+          name: Report test coverage
+          command: bash <(curl -s https://codecov.io/bash)
 
 workflows:
   main:
