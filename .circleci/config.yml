@@ -2,7 +2,6 @@ version: 2.1
 
 orbs:
   python: circleci/python@0.2.1
-  codecov: codecov/codecov@1.0.5
 
 jobs:
   build-and-test:
@@ -26,12 +25,6 @@ jobs:
       - run:
           name: Run backend tests
           command: docker exec -it project_backend_1 pytest --emoji --cov=. --no-cov-on-fail --cov-report=term:skip-covered
-      - run:
-          name: Copy test coverage from container
-          command: docker cp project_backend_1:/code/.coverage backend/code
-      - run:
-          name: Report test coverage
-          command: bash <(curl -s https://codecov.io/bash) -f backend/code/.coverage
 
 workflows:
   main:
