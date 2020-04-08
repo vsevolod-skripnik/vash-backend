@@ -33,7 +33,7 @@ jobs:
       #     file: .coverage
       #     conf: backend/codecov.yml
       - run:
-          name: Report test coverage
+          name: Report test coverage lol
           command: bash <(curl -s https://codecov.io/bash) -f backend/code/.coverage
 
 workflows:
