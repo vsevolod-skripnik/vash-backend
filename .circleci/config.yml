@@ -27,13 +27,13 @@ jobs:
           command: docker exec -it project_backend_1 python manage.py migrate
       - run:
           name: Run backend tests
-          command: docker exec -it project_backend_1 coverage run --source=. -m pytest --emoji
+          command: docker exec -it project_backend_1 coverage run --rcfile=.coveragerc --source=. -m pytest --emoji
       - run:
           name: Copy coverage from container
           command: docker cp project_backend_1:/code/.coverage .
       - run:
           name: Report test coverage
-          command: coverage report -m
+          command: coverage report --rcfile=backend/code/.coveragerc -m
       - run:
           name: Upload test coverage to Codacy
           command: bash <(curl -Ls https://coverage.codacy.com/get.sh)
