@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   python: circleci/python@0.2.1
+  coverage-reporter: codacy/coverage-reporter@7.7.0
 
 jobs:
   build-and-test:
@@ -17,8 +18,8 @@ jobs:
       - setup_remote_docker
       - checkout
       - run:
-          name: Install Coveralls
-          command: pip install coveralls==2.0.0
+          name: Install coverage
+          command: pip install coverage
       - run:
           name: Build and up images
           command: BACKEND_VERSION=${CIRCLE_SHA1} docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/production.yml -f database/compose.yml -f webserver/compose.yml up --build --detach
@@ -33,7 +34,8 @@ jobs:
           command: docker cp project_backend_1:/code/.coverage backend
       - run:
           name: Report test coverage
-          command: coveralls --rcfile=backend/.coveragerc
+          command: coverage report -m
+      - coverage-reporter/send_report
 
 workflows:
   main:
