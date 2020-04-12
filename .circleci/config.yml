@@ -35,7 +35,10 @@ jobs:
               docker cp project_backend_1:/code/.coverage . &&
               cp -rp .coverage .coverage-hack &&
               coverage combine --rcfile=backend/code/.coveragerc .coverage .coverage-hack
-      - coverage-reporter/send_report
+      - run:
+          name: Report coverage
+          command: coverage xml --rcfile=backend/code/.coveragerc
+      - coverage-reporter/send_report -r coverage.xml
 
 workflows:
   main:
