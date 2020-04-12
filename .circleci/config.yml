@@ -17,6 +17,9 @@ jobs:
       - setup_remote_docker
       - checkout
       - run:
+          name: Install coverage
+          command: pip install coverage==5.0.4
+      - run:
           name: Build and up images
           command: BACKEND_VERSION=${CIRCLE_SHA1} docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/production.yml -f database/compose.yml -f webserver/compose.yml up --build --detach
       - run:
