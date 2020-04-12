@@ -37,8 +37,8 @@ jobs:
               coverage combine --rcfile=backend/code/.coveragerc .coverage .coverage-hack
       - run:
           name: Report coverage
-          command: coverage xml --rcfile=backend/code/.coveragerc
-      - coverage-reporter/send_report -r coverage.xml
+          command: coverage xml --rcfile=backend/code/.coveragerc -o cobertura.xml
+      - coverage-reporter/send_report
 
 workflows:
   main:
