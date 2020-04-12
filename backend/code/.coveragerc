@@ -1,5 +1,4 @@
 [paths]
 source =
-    backend/code
-    /home/circleci/project/backend/code
-    /code
+    backend/code/
+    /code/

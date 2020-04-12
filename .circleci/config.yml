@@ -17,9 +17,6 @@ jobs:
       - setup_remote_docker
       - checkout
       - run:
-          name: Install coverage
-          command: pip install coverage
-      - run:
           name: Build and up images
           command: BACKEND_VERSION=${CIRCLE_SHA1} docker-compose --project-directory . -f backend/compose/common.yml -f backend/compose/production.yml -f database/compose.yml -f webserver/compose.yml up --build --detach
       - run:
@@ -29,40 +26,14 @@ jobs:
           name: Run backend tests
           command: docker exec -it project_backend_1 coverage run --source=. -m pytest --emoji
       - run:
-          name: Copy coverage from container
-          command: docker cp project_backend_1:/code/.coverage .
+          name: Prepare coverage file
+          command: |
+              docker cp project_backend_1:/code/.coverage . &&
+              cp -rp .coverage .coverage-hack &&
+              coverage combine --rcfile=backend/code/.coveragerc .coverage .coverage-hack
       - run:
-          name: Debug
-          command: coverage debug data
-      - run:
-          name: Debug
-          command: coverage debug config
-      - run:
-          name: Debug
-          command: coverage debug sys
-      - run:
-          name: Debug
-          command: coverage debug premain
-      - run:
-          name: Debug
-          command: coverage debug --rcfile=backend/code/.coveragerc data
-      - run:
-          name: Debug
-          command: coverage debug --rcfile=backend/code/.coveragerc config
-      - run:
-          name: Debug
-          command: coverage debug --rcfile=backend/code/.coveragerc sys
-      - run:
-          name: Debug
-          command: coverage debug --rcfile=backend/code/.coveragerc premain
-
-      # - run:
-      #     name: Report test coverage
-      #     command: coverage report --rcfile=backend/code/.coveragerc -m
-
-      # - run:
-      #     name: Upload test coverage to Codacy
-      #     command: bash <(curl -Ls https://coverage.codacy.com/get.sh)
+          name: Report coverage
+          command: bash <(curl -Ls https://coverage.codacy.com/get.sh)
 
 workflows:
   main:
