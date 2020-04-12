@@ -1,5 +1,6 @@
 [![Build Status](https://circleci.com/gh/vsevolod-skripnik/vash-backend.svg?style=shield)](https://circleci.com/gh/vsevolod-skripnik/vash-backend)
 [![The Humanoid Typhoon](https://img.shields.io/badge/wanted-%24%2460%2C000%2C000%2C000-red)](https://trigun.fandom.com/wiki/Vash_the_Stampede)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7c4808b9ff9743a98a199b5ec07ca847)](https://www.codacy.com/manual/vsevolod-skripnik/vash-backend?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=vsevolod-skripnik/vash-backend&amp;utm_campaign=Badge_Grade)
 
 
 # Vash
