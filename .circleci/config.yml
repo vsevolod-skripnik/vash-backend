@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   python: circleci/python@0.2.1
+  coverage-reporter: codacy/coverage-reporter@7.7.0
 
 jobs:
   build-and-test:
@@ -34,9 +35,7 @@ jobs:
               docker cp project_backend_1:/code/.coverage . &&
               cp -rp .coverage .coverage-hack &&
               coverage combine --rcfile=backend/code/.coveragerc .coverage .coverage-hack
-      - run:
-          name: Report coverage
-          command: bash <(curl -Ls https://coverage.codacy.com/get.sh)
+      - coverage-reporter/send_report
 
 workflows:
   main:
