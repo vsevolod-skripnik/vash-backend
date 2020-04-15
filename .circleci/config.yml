@@ -30,15 +30,18 @@ jobs:
           name: Run backend tests
           command: docker exec -it project_backend_1 coverage run --source=. -m pytest --emoji
       - run:
-          name: Prepare coverage file
+          name: Prepare Cobertura coverage file
           command: |
               docker cp project_backend_1:/code/.coverage . &&
               cp -rp .coverage .coverage-hack &&
               coverage combine --rcfile=backend/code/.coveragerc .coverage .coverage-hack
       - run:
-          name: Report coverage
-          command: coverage xml --rcfile=backend/code/.coveragerc -o cobertura.xml
-      - coverage-reporter/send_report
+          name: Save Cobertura coverage file as XML
+          command: coverage xml --rcfile=backend/code/.coveragerc
+      - run:
+          name: Report XML coverage file to Codacy
+          command: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r coverage.xml -l Python --commit-uuid ${CIRCLE_SHA1}
+
 
 workflows:
   main:
