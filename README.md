@@ -7,11 +7,11 @@
 
 Commands:
 
--   Test backend: `docker exec -it vash-backend_backend_1 coverage run --source=. -m pytest --emoji`
+- Test backend: `docker exec -it vash-backend_backend_1 coverage run --source=. -m pytest --emoji`
 
--   Run backend migrations: `docker exec -it vash-backend_backend_1 python manage.py migrate`
+- Run backend migrations: `docker exec -it vash-backend_backend_1 python manage.py migrate`
 
--   Collect static: `docker exec -it vash-backend_backend_1 python manage.py collectstatic`
+- Collect static: `docker exec -it vash-backend_backend_1 python manage.py collectstatic`
 
 
 ## How to run in development mode
