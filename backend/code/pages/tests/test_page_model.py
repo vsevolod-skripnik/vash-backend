@@ -35,3 +35,4 @@ def test_updated_at_auto_now(page):
 
 def test_published_at_none_by_default(page):
     assert page.published_at is None
+
