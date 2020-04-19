@@ -2,8 +2,6 @@ import pytest
 from django.utils import timezone
 from freezegun import freeze_time
 
-from pages.models import Page
-
 pytestmark = [pytest.mark.django_db]
 
 

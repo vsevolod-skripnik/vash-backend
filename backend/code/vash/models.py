@@ -30,5 +30,5 @@ class BaseModel(models.Model):
         """
         for name in attributes:
             setattr(self, name, attributes[name])
-        else:
-            self.save()
+        
+        self.save()
