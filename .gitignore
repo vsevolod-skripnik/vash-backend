@@ -3,5 +3,9 @@ images/backend/code/vash/.env
 .pytest_cache
 __pycache__
 *.pyc
+*.swp
 backend/code/db.sqlite3
 backend/code/.coverage
+
+up.sh
+test.sh
