@@ -1,5 +1,5 @@
 coverage==5.0.4  # Calculate test coverage
-django==3.0.3  # Web framework
+django==3.0.7  # Web framework
 django-environ==0.4.1  # Easily read .env to settings
 djangorestframework==3.11.0  # REST API
 freezegun==0.3.7  # Freeze time in tests
